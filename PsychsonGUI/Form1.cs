@@ -52,8 +52,10 @@ namespace PsychsonGUI
 
         private void enterBootmodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            device.JumpToBootMode();
-            Thread.Sleep(2000);
+            if (!isBootMode())
+                device.JumpToPRAM();
+            else
+                device.JumpToBootMode();
             MessageBox.Show("Done.");
         }
 
@@ -69,7 +71,6 @@ namespace PsychsonGUI
                 {
                     device.TransferFile(File.ReadAllBytes(d.FileName), pb1);
                     device.JumpToPRAM();
-                    Thread.Sleep(2000);
                     MessageBox.Show("Done.");
                 }
                 catch (Exception ex)
@@ -110,17 +111,12 @@ namespace PsychsonGUI
             fw.Read(data, 0, data.Length);
             fw.Close();
             device.TransferFile(data, 0x01, 0x00, pb1);
-            var ret = device.SendCommand(new byte[] { 0x06, 0xEE, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 64 + 8);
-            Thread.Sleep(1000);
-            device.TransferFile(data, 0x03, 0x02);
-            ret = device.SendCommand(new byte[] { 0x06, 0xEE, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00 }, 64 + 8);
-            Thread.Sleep(1000);
-            ret = device.SendCommand(new byte[] { 0x06, 0xEE, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 64 + 8);
-            Thread.Sleep(1000);
-            ret = device.SendCommand(new byte[] { 0x06, 0xEE, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00 }, 64 + 8);
-            Thread.Sleep(1000);
+            //var ret = device.SendCommand(new byte[] { 0x06, 0xEE, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 64 + 8);
+            device.TransferFile(data, 0x03, 0x02, pb1);
+            //ret = device.SendCommand(new byte[] { 0x06, 0xEE, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00 }, 64 + 8);
+            //ret = device.SendCommand(new byte[] { 0x06, 0xEE, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 64 + 8);
+            //ret = device.SendCommand(new byte[] { 0x06, 0xEE, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00 }, 64 + 8);
             device.JumpToPRAM();
-            Thread.Sleep(1000);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -186,7 +182,10 @@ namespace PsychsonGUI
             input = Microsoft.VisualBasic.Interaction.InputBox("Enter count of expected return bytes:", "", "18");
             if (input == null || input.Length == 0) return;
             int count = Convert.ToInt32(input);
-            hb1.ByteProvider = new DynamicByteProvider(device.RequestInfo(cmd, count));
+            byte[] result = device.RequestInfo(cmd, count);
+            if (result == null)
+                result = new byte[0];
+            hb1.ByteProvider = new DynamicByteProvider(result);
         }
 
         public byte[] StringToByteArray(string hex)

@@ -162,8 +162,7 @@ namespace PsychsonGUI
 
         public string GetChipID()
         {
-            var response = SendCommand(new byte[] { 0x06, 0x56, 0x00, 0x00, 0x00,
-                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 512);
+            var response = SendCommand(new byte[] { 0x06, 0x56, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 512);
 
             return BitConverter.ToString(response, 0, 6);
         }
@@ -258,7 +257,7 @@ namespace PsychsonGUI
 
             //Get response
             var response = SendCommand(new byte[] { 0x06, 0xB0, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 8);
-            if (response == null || response[0] != 0x55)
+            if (response == null || (response[0] != 0x55 && response[0] != 0x12))
             {
                 throw new InvalidOperationException("Header not accepted");
             }
@@ -290,7 +289,7 @@ namespace PsychsonGUI
 
                 //Get response
                 var r = SendCommand(new byte[] { 0x06, 0xB0, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 8);
-                if (r == null || r[0] != 0xA5)
+                if (r == null || (r[0] != 0xA5 && r[0]!=0x0E))
                 {
                     throw new InvalidOperationException("Body not accepted");
                 }
