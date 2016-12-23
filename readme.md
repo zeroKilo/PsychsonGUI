@@ -14,4 +14,9 @@ based on the PhisonDevice.cs class of this project
 
 https://github.com/brandonlw/Psychson/tree/master/DriveCom/DriveCom
 
+forum for research:
+
+http://phisonresearch.freeforums.net/
+
+
 greetz Warranty Voider
