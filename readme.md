@@ -20,7 +20,7 @@ based on the PhisonDevice.cs class of this project
 https://github.com/brandonlw/Psychson/tree/master/DriveCom/DriveCom
 
 
-NEW: Exploit for 2251-69 chips that accept BN68V101M.BIN as bootloader, to dump memory
+NEW: Exploit for 2251-68 chips that accept BN68V101M.BIN as bootloader, to dump memory
 
 details here: http://phisonresearch.freeforums.net/thread/7/reversing-burner-image-bn68v101m-bin?page=1&scrollTo=11
 
