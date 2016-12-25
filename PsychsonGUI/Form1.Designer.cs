@@ -44,29 +44,33 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.hb1 = new Be.Windows.Forms.HexBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.rtb2 = new System.Windows.Forms.RichTextBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.getInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.info1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.info2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.info3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendCustomCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.rtb2 = new System.Windows.Forms.RichTextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.exploitsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dumpMemoryAreaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.menuStrip2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.driveOpenToolStripMenuItem,
-            this.toolsToolStripMenuItem});
+            this.toolsToolStripMenuItem,
+            this.exploitsToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(676, 24);
@@ -224,6 +228,55 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // menuStrip2
+            // 
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.getInfoToolStripMenuItem});
+            this.menuStrip2.Location = new System.Drawing.Point(3, 3);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(662, 24);
+            this.menuStrip2.TabIndex = 3;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // getInfoToolStripMenuItem
+            // 
+            this.getInfoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.info1ToolStripMenuItem,
+            this.info2ToolStripMenuItem,
+            this.info3ToolStripMenuItem,
+            this.sendCustomCommandToolStripMenuItem});
+            this.getInfoToolStripMenuItem.Name = "getInfoToolStripMenuItem";
+            this.getInfoToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.getInfoToolStripMenuItem.Text = "Get Info";
+            // 
+            // info1ToolStripMenuItem
+            // 
+            this.info1ToolStripMenuItem.Name = "info1ToolStripMenuItem";
+            this.info1ToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.info1ToolStripMenuItem.Text = "Info 1";
+            this.info1ToolStripMenuItem.Click += new System.EventHandler(this.info1ToolStripMenuItem_Click);
+            // 
+            // info2ToolStripMenuItem
+            // 
+            this.info2ToolStripMenuItem.Name = "info2ToolStripMenuItem";
+            this.info2ToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.info2ToolStripMenuItem.Text = "Info 2";
+            this.info2ToolStripMenuItem.Click += new System.EventHandler(this.info2ToolStripMenuItem_Click);
+            // 
+            // info3ToolStripMenuItem
+            // 
+            this.info3ToolStripMenuItem.Name = "info3ToolStripMenuItem";
+            this.info3ToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.info3ToolStripMenuItem.Text = "Info 3";
+            this.info3ToolStripMenuItem.Click += new System.EventHandler(this.info3ToolStripMenuItem_Click);
+            // 
+            // sendCustomCommandToolStripMenuItem
+            // 
+            this.sendCustomCommandToolStripMenuItem.Name = "sendCustomCommandToolStripMenuItem";
+            this.sendCustomCommandToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.sendCustomCommandToolStripMenuItem.Text = "Send Custom Command";
+            this.sendCustomCommandToolStripMenuItem.Click += new System.EventHandler(this.sendCustomCommandToolStripMenuItem_Click);
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.rtb2);
@@ -260,54 +313,28 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // menuStrip2
+            // exploitsToolStripMenuItem1
             // 
-            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.getInfoToolStripMenuItem});
-            this.menuStrip2.Location = new System.Drawing.Point(3, 3);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(662, 24);
-            this.menuStrip2.TabIndex = 3;
-            this.menuStrip2.Text = "menuStrip2";
+            this.exploitsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem3});
+            this.exploitsToolStripMenuItem1.Name = "exploitsToolStripMenuItem1";
+            this.exploitsToolStripMenuItem1.Size = new System.Drawing.Size(56, 20);
+            this.exploitsToolStripMenuItem1.Text = "Exploits";
             // 
-            // getInfoToolStripMenuItem
+            // toolStripMenuItem3
             // 
-            this.getInfoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.info1ToolStripMenuItem,
-            this.info2ToolStripMenuItem,
-            this.info3ToolStripMenuItem,
-            this.sendCustomCommandToolStripMenuItem});
-            this.getInfoToolStripMenuItem.Name = "getInfoToolStripMenuItem";
-            this.getInfoToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.getInfoToolStripMenuItem.Text = "Get Info";
+            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dumpMemoryAreaToolStripMenuItem});
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem3.Text = "2251-68";
             // 
-            // info1ToolStripMenuItem
+            // dumpMemoryAreaToolStripMenuItem
             // 
-            this.info1ToolStripMenuItem.Name = "info1ToolStripMenuItem";
-            this.info1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.info1ToolStripMenuItem.Text = "Info 1";
-            this.info1ToolStripMenuItem.Click += new System.EventHandler(this.info1ToolStripMenuItem_Click);
-            // 
-            // info2ToolStripMenuItem
-            // 
-            this.info2ToolStripMenuItem.Name = "info2ToolStripMenuItem";
-            this.info2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.info2ToolStripMenuItem.Text = "Info 2";
-            this.info2ToolStripMenuItem.Click += new System.EventHandler(this.info2ToolStripMenuItem_Click);
-            // 
-            // info3ToolStripMenuItem
-            // 
-            this.info3ToolStripMenuItem.Name = "info3ToolStripMenuItem";
-            this.info3ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.info3ToolStripMenuItem.Text = "Info 3";
-            this.info3ToolStripMenuItem.Click += new System.EventHandler(this.info3ToolStripMenuItem_Click);
-            // 
-            // sendCustomCommandToolStripMenuItem
-            // 
-            this.sendCustomCommandToolStripMenuItem.Name = "sendCustomCommandToolStripMenuItem";
-            this.sendCustomCommandToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.sendCustomCommandToolStripMenuItem.Text = "Send Custom Command";
-            this.sendCustomCommandToolStripMenuItem.Click += new System.EventHandler(this.sendCustomCommandToolStripMenuItem_Click);
+            this.dumpMemoryAreaToolStripMenuItem.Name = "dumpMemoryAreaToolStripMenuItem";
+            this.dumpMemoryAreaToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.dumpMemoryAreaToolStripMenuItem.Text = "Dump Memory Area";
+            this.dumpMemoryAreaToolStripMenuItem.Click += new System.EventHandler(this.dumpMemoryAreaToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -329,9 +356,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,6 +391,9 @@
         private System.Windows.Forms.ToolStripMenuItem info2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem info3ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sendCustomCommandToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exploitsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem dumpMemoryAreaToolStripMenuItem;
     }
 }
 

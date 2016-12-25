@@ -195,5 +195,71 @@ namespace PsychsonGUI
                              .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
                              .ToArray();
         }
+
+        private void dumpMemoryAreaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            SaveFileDialog d = new SaveFileDialog();
+            d.Filter = "*.bin|*.bin";
+            if (d.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                DriveSelector ds = new DriveSelector();
+                ds.ShowDialog();
+                if (ds.ok && ds.comboBox1.SelectedIndex != -1)
+                {
+                    char letter = ds.comboBox1.Items[ds.comboBox1.SelectedIndex].ToString()[0];
+                    string input = Microsoft.VisualBasic.Interaction.InputBox("Enter region start and size in hex, like XXXX:YYYY", "", "0000:1000");
+                    if (input != "" && input.Split(':').Length == 2)
+                    {
+                        string[] parts = input.Split(':');
+                        int start = Convert.ToInt32(parts[0].Trim(), 16);
+                        int size = Convert.ToInt32(parts[1].Trim(), 16);
+                        if (device != null)
+                            device.Close();
+                        int leaksize = 0x74;
+                        int count = size / leaksize;
+                        if (count * leaksize < size)
+                            count++;
+                        int addr = start;
+                        string path = Path.GetDirectoryName(Application.ExecutablePath);
+                        byte[] payload = File.ReadAllBytes(path + "\\img\\exploit\\exploit_dump_68.BIN");
+                        MemoryStream m = new MemoryStream();
+                        for (int i = 0; i < count; i++)
+                        {
+                            MessageBox.Show("Copy transfer " + (i + 1) + " / " + count + " @0x" + addr.ToString("X4") + " : Please unplug and replug usb stick!");
+                            device = new PhisonDevice(letter, rtb2);
+                            device.Open();
+                            if (device.GetRunMode() != PhisonDevice.RunMode.BootMode)
+                            {
+                                MessageBox.Show("Device is not in boot mode!");
+                                break;
+                            }
+                            payload[0x35a4] = (byte)(addr >> 8);//0x18 bytes
+                            payload[0x35a6] = (byte)(addr & 0xFF);
+                            payload[0x35ad] = (byte)((addr + 0x18) >> 8);//0x40 bytes
+                            payload[0x35af] = (byte)((addr + 0x18) & 0xFF);
+                            payload[0x35bd] = (byte)((addr + 0x58) >> 8);//0x10 bytes
+                            payload[0x35bf] = (byte)((addr + 0x58) & 0xFF);
+                            payload[0x35c8] = (byte)((addr + 0x68) >> 8);//0x8 bytes
+                            payload[0x35ca] = (byte)((addr + 0x68) & 0xFF);
+                            payload[0x35d3] = (byte)((addr + 0x70) >> 8);//0x4 bytes
+                            payload[0x35d5] = (byte)((addr + 0x70) & 0xFF);
+                            device.TransferFile(payload, pb1);
+                            device.JumpToPRAM();
+                            byte[] buff = device.RequestInfo(new byte[] { 0x06, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 }, 528);
+                            m.Write(buff, 0x36, 0x18);
+                            m.Write(buff, 0x50, 0x40);
+                            m.Write(buff, 0x9C, 0x10);
+                            m.Write(buff, 0xB0, 0x8);
+                            m.Write(buff, 0xB8, 0x4);
+                            device.Close();
+                            addr += leaksize;
+                        }
+                        File.WriteAllBytes(d.FileName, m.ToArray());
+                        MessageBox.Show("Done.");
+                    }
+                }
+            }
+        }
     }
 }
