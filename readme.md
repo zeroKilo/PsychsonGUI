@@ -10,6 +10,11 @@ http://i.imgur.com/hzKHKXg.png
 http://i.imgur.com/GD3oOXG.png
 
 
+forum for research:
+
+http://phisonresearch.freeforums.net/
+
+
 based on the PhisonDevice.cs class of this project
 
 https://github.com/brandonlw/Psychson/tree/master/DriveCom/DriveCom
